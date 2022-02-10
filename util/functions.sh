@@ -22,15 +22,7 @@ waitForUrlHealthCheck(){
   echo "FATAL ERROR: '$1' is not avaliable"
   exit 1
 }
-waitForMysql(){
-  waitForContainer "MySQL" "3306"
-}
-waitForRabbit(){
-  waitForContainer "RabbitMQ" "5672"
-}
-waitForRedis(){
-  waitForContainer "Redis" "6379"
-}
+
 ensureVarIsNotEmpty(){
   for i in "$@"; do
     if [ -z "${!i}" ]; then
@@ -53,6 +45,7 @@ localSonarStart(){
   waitForUrlHealthCheck "Local Sonar" "http://127.0.0.1:9000/api/system/status"
   ./mvnw sonar:sonar
 }
+
 localSonarStop(){
   docker-compose -f ./util/docker/docker-compose.yml -f ./util/docker/sonar.docker-compose.yml down --remove-orphans --volumes
   docker network prune -f
