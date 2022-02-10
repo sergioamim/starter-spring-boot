@@ -1,4 +1,4 @@
-package br.com.dasa.starter;
+package br.com.dasa.startermodel;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

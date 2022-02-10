@@ -19,7 +19,7 @@
 		<!-- sonar -->
 		<sonar.projectName>ap-starter</sonar.projectName>
 		<sonar.exclusions>
-			**/*br/com/dasa/starter/Application.java
+			**/*br/com/dasa/startermodel/Application**
 		</sonar.exclusions>
 
 		<!-- deps -->
