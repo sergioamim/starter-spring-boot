@@ -15,7 +15,7 @@ public class ControllerExemplo {
     @Autowired
     private ExemploApplication exemploApplication;
 
-    @GetMapping(name = "/all")
+    @GetMapping("/all")
     public ResponseEntity<List<Exemplo>> getAll() {
 
         return ResponseEntity.ok(exemploApplication.getAll());
