@@ -2,11 +2,9 @@ package br.com.dasa.startermodel.entity;
 
 import lombok.*;
 
-/**
- * @autor: Jucilene L. Mahle
- **/
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Exemplo {
 

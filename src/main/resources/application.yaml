@@ -21,6 +21,10 @@ logging.level:
   org.springframework: ${ORG_SPRINGFRAMEWORK_LOG:ERROR}
 system:
   time_zone: GMT-0300
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 ---
 spring:
   config:
