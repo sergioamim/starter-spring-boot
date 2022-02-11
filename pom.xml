@@ -15,15 +15,11 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-
-		<!-- sonar -->
+		<springfox.boot.starter.version>3.0.0</springfox.boot.starter.version>
 		<sonar.projectName>ap-starter</sonar.projectName>
 		<sonar.exclusions>
 			**/*br/com/dasa/startermodel/Application**
 		</sonar.exclusions>
-
-		<!-- deps -->
-		<javafaker.version>1.0.2</javafaker.version>
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
 
 	</properties>
@@ -51,11 +47,20 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Swagger -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox.boot.starter.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
