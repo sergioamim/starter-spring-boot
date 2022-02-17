@@ -25,6 +25,11 @@ system:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+spring:
+  rest:
+    maxPageSize: 500
+    defaultLimitValue: 100
+    defaultPageValue: 0
 ---
 spring:
   config:
