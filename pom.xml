@@ -9,17 +9,18 @@
 		<relativePath/>
 	</parent>
 	<groupId>br.com.dasa</groupId>
-	<artifactId>ap.starter.model</artifactId>
+	<artifactId>ap-starter-model</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<sonar.projectName>ap-starter</sonar.projectName>
+		<sonar.projectName>ap-starter-model</sonar.projectName>
 		<sonar.exclusions>
 			**/*br/com/dasa/startermodel/Application**
 		</sonar.exclusions>
+		<jacoco.destFile>${maven.multiModuleProjectDirectory}/target/jacoco.exec</jacoco.destFile>
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
 
 	</properties>
@@ -48,6 +49,8 @@
 						<excludes>
 							<exclude>${sonar.exclusions}</exclude>
 						</excludes>
+						<append>true</append>
+						<dataFile>${jacoco.destFile}</dataFile>
 					</configuration>
 					<executions>
 						<execution>
@@ -63,7 +66,7 @@
 											<limit>
 												<counter>INSTRUCTION</counter>
 												<value>COVEREDRATIO</value>
-												<minimum>0.8</minimum>
+												<minimum>0.0</minimum>
 											</limit>
 										</limits>
 									</rule>
