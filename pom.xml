@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>br.com.dasa</groupId>
+		<artifactId>ap-parent-pom</artifactId>
+		<version>1.0</version>
+		<relativePath/>
 	</parent>
 	<groupId>br.com.dasa</groupId>
 	<artifactId>ap.starter.model</artifactId>
@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<springfox.boot.starter.version>3.0.0</springfox.boot.starter.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.projectName>ap-starter</sonar.projectName>
 		<sonar.exclusions>
 			**/*br/com/dasa/startermodel/Application**
@@ -23,46 +23,6 @@
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
 
 	</properties>
-	<dependencies>
-
-		<!-- base -->
-		<dependency>
-			<groupId>br.com.dasa</groupId>
-			<artifactId>ap-commons-api</artifactId>
-			<version>${ap-commons-api.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- Swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>${springfox.boot.starter.version}</version>
-		</dependency>
-
-	</dependencies>
-
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -128,5 +88,48 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<dependencies>
+
+		<!-- base -->
+		<dependency>
+			<groupId>br.com.dasa</groupId>
+			<artifactId>ap-commons-api</artifactId>
+			<version>${ap-commons-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- utils -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Tests -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 </project>
