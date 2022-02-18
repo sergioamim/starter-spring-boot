@@ -104,7 +104,6 @@ spec:
         target:
           type: Utilization
           averageUtilization: ${MEM_SCALE_PERCENT}
-
 ---
 
 kind: Service
@@ -129,7 +128,6 @@ spec:
     - port: 80
       targetPort: ${CONTAINER_PORT}
   type: ClusterIP
-
 ---
 
 apiVersion: networking.k8s.io/v1beta1
