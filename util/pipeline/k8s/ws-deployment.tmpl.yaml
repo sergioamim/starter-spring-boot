@@ -37,10 +37,6 @@ spec:
         agentpool: "${AGENT_POOL}"
       imagePullSecrets:
         - name: dasa-images
-      hostAliases:
-        - ip: "${LAUDASA_V1_IP}"
-          hostnames:
-            - "${LAUDASA_V1_HOSTNAME}"
       containers:
         - name: ${CONTAINER_NAME}
           image: ${DOCKER_IMAGE}
