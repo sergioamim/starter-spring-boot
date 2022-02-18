@@ -37,17 +37,17 @@ pipeline {
         stage('Init') {
             steps {
                 slackSend(color: '#BADA55', message: "Starting build ${env.BUILD_URL}", channel: "${env.SLACK_CHANNEL}")
-                script {
-                   if (env.GIT_BRANCH =~ /release/) {
-                       env.ENVIRONMENT = "hml"
-                       env.KUBECONFIG = "${env.KUBECONFIG_HML}"
-                   } else if (env.GIT_BRANCH == 'master') {
-                       env.ENVIRONMENT = "prd"
-                       env.KUBECONFIG = "${env.KUBECONFIG_PRD}"
-                   }
-                    if (env.ENVIRONMENT != "") {
-                        slackSend(color: '#BADA55', message: "Build ${env.BUILD_URL} started with env: ${env.ENVIRONMENT}", channel: "${env.SLACK_CHANNEL}")
-                    }
+//                 script {
+//                    if (env.GIT_BRANCH =~ /release/) {
+//                        env.ENVIRONMENT = "hml"
+//                        env.KUBECONFIG = "${env.KUBECONFIG_HML}"
+//                    } else if (env.GIT_BRANCH == 'master') {
+//                        env.ENVIRONMENT = "prd"
+//                        env.KUBECONFIG = "${env.KUBECONFIG_PRD}"
+//                    }
+//                     if (env.ENVIRONMENT != "") {
+//                         slackSend(color: '#BADA55', message: "Build ${env.BUILD_URL} started with env: ${env.ENVIRONMENT}", channel: "${env.SLACK_CHANNEL}")
+//                     }
                 }
             }
         }
@@ -71,10 +71,10 @@ pipeline {
         }
 
         stage('CD: K8s Deploy') {
-            when { expression { env.ENVIRONMENT } }
-            steps {
-                sh 'make cd'
-            }
+//             when { expression { env.ENVIRONMENT } }
+//             steps {
+//                 sh 'make cd'
+//             }
         }
     }
 
