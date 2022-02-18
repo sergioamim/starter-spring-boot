@@ -1,6 +1,4 @@
-# Projeto **ap-starter**
-
-Autor: Sergio Amim
+# Projeto **ap-starter-model**
 
 Projeto foi criado com finalidade de facilitar e padronizar projetos micro serviço
 
