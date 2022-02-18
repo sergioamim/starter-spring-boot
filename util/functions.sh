@@ -102,6 +102,8 @@ k8sApply(){
   envsubst < "${K8S_TEMPLATE_FILE}" | kubectl apply --insecure-skip-tls-verify -f -
 }
 k8sDeploy(){
+  ensureVarIsNotEmpty "PROJECT_NAME"
+  JAR_PATH="./target/${PROJECT_NAME}.jar";
   set -e
   azDockerAuth
   resolveDockerImage
