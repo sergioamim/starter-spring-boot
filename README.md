@@ -1,6 +1,4 @@
-# Projeto **ap-starter**
-
-Autor: Sergio Amim
+# Projeto **ap-starter-model**
 
 Projeto foi criado com finalidade de facilitar e padronizar projetos micro serviço
 
@@ -29,7 +27,7 @@ PROJECT_NAME=(Nome do projeto entra aqui)
 ```
 
 
-3. Renomear o diretorio util/pipeline/k8s/ap-starter para o nome do projeto
+3. Renomear o diretorio util/pipeline/k8s/ap-starter-modelF para o nome do projeto
 4. Substituir o valor em util/pipeline/Jenkinsfile
 
 ```

@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        PROJECT_GROUP = "ap-starter"
+        PROJECT_GROUP = "ap-starter-model"
         PROJECT_NAME = "ap-starter-model"
         SLACK_CHANNEL = "ap-chimera-ci"
 
