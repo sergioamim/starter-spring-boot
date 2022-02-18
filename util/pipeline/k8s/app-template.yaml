@@ -1,0 +1,156 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${K8S_WORKLOAD}
+  namespace: ${K8S_NAMESPACE}
+  labels:
+    environment: "${ENVIRONMENT}"
+    journey: "${JOURNEI}"
+    oi: "${OI_CODE}"
+    product: "${PROJECT_NAME}"
+    type: "main"
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: ${REPLICAS_MAXUNAVAILABLE}
+      maxSurge: ${REPLICAS_MAXSURGE}
+  selector:
+    matchLabels:
+      environment: "${ENVIRONMENT}"
+      journey: "${JOURNEI}"
+      oi: "${OI_CODE}"
+      product: "${PROJECT_NAME}"
+      type: "main"
+  template:
+    metadata:
+      namespace: ${K8S_NAMESPACE}
+      labels:
+        environment: "${ENVIRONMENT}"
+        journey: "${JOURNEI}"
+        oi: "${OI_CODE}"
+        product: "${PROJECT_NAME}"
+        type: "main"
+    spec:
+      nodeSelector:
+        agentpool: "${AGENT_POOL}"
+      imagePullSecrets:
+        - name: dasa-images
+      containers:
+        - name: ${CONTAINER_NAME}
+          image: ${DOCKER_IMAGE}
+          envFrom:
+            - configMapRef:
+                name: ${K8S_CONFIG_MAP}
+            - secretRef:
+                name: ${K8S_SECRETS}
+          ports:
+            - containerPort: ${CONTAINER_PORT}
+          livenessProbe:
+            httpGet:
+              path: ${LIVENESS_URL}
+              port: ${CONTAINER_PORT}
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: ${READINESS_URL}
+              port: ${CONTAINER_PORT}
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "${CONTAINER_MEM}"
+              cpu: "${CONTAINER_CPU}"
+            limits:
+              memory: "${CONTAINER_MAX_MEM}"
+              cpu: "${CONTAINER_MAX_CPU}"
+---
+
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: ${K8S_NAMESPACE}
+  name: ${K8S_AUTO_SCALE}
+  labels:
+    environment: "${ENVIRONMENT}"
+    journey: "${JOURNEI}"
+    oi: "${OI_CODE}"
+    product: "${PROJECT_NAME}"
+    type: "main"
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${K8S_WORKLOAD}
+  minReplicas: ${REPLICAS_QTD_MIN}
+  maxReplicas: ${REPLICAS_QTD_MAX}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: ${CPU_SCALE_PERCENT}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: ${MEM_SCALE_PERCENT}
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: ${K8S_NAMESPACE}
+  name: ${K8S_SERVICE}
+  labels:
+    environment: "${ENVIRONMENT}"
+    journey: "${JOURNEI}"
+    oi: "${OI_CODE}"
+    product: "${PROJECT_NAME}"
+    type: "main"
+spec:
+  selector:
+    environment: "${ENVIRONMENT}"
+    journey: "${JOURNEI}"
+    oi: "${OI_CODE}"
+    product: "${PROJECT_NAME}"
+    type: "main"
+  ports:
+    - port: 80
+      targetPort: ${CONTAINER_PORT}
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ${K8S_INGRESS}
+  namespace: ${K8S_NAMESPACE}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/load-balance: ewma
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "${INGRESS_READ_TIMEOUT}"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "${INGRESS_READ_TIMEOUT}"
+    nginx.ingress.kubernetes.io/proxy-body-size: "${INGRESS_BODY_SIZE}"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "${INGRESS_BUFFER_SIZE}"
+spec:
+  rules:
+    - host: ${K8S_INGRESS_HOSTNAME}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ${K8S_SERVICE}
+              servicePort: 80
