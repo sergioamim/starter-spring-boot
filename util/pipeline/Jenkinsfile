@@ -72,9 +72,9 @@ pipeline {
 
         stage('CD: K8s Deploy') {
             when { expression { env.ENVIRONMENT } }
-//             steps {
-//                 sh 'make cd'
-//             }
+            steps {
+                sh 'make cd'
+            }
         }
     }
 
