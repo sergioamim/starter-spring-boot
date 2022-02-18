@@ -48,7 +48,7 @@ pipeline {
 //                     if (env.ENVIRONMENT != "") {
 //                         slackSend(color: '#BADA55', message: "Build ${env.BUILD_URL} started with env: ${env.ENVIRONMENT}", channel: "${env.SLACK_CHANNEL}")
 //                     }
-                }
+//                 }
             }
         }
 
@@ -71,7 +71,7 @@ pipeline {
         }
 
         stage('CD: K8s Deploy') {
-//             when { expression { env.ENVIRONMENT } }
+            when { expression { env.ENVIRONMENT } }
 //             steps {
 //                 sh 'make cd'
 //             }
