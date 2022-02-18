@@ -3,7 +3,7 @@ SHELL := /bin/bash
 .SILENT:
 
 .EXPORT_ALL_VARIABLES:
-PROJECT_NAME=ap-laudasa-worker
+PROJECT_NAME=ap-starter-model
 MAVEN_OPTS = -Drevision=1.0.0
 COMPOSE_DOCKER_CLI_BUILD = 1
 DOCKER_BUILDKIT = 1
