@@ -73,6 +73,7 @@ ci: build ci-sonar
 
 ## [cd] build the images and deploy the apps on k8s
 cd:
+    JAR_PATH="./target/ap-exams-api.jar"; \
 	. ./util/functions.sh; \
 	k8sDeploy
 
