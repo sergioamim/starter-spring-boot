@@ -1,4 +1,3 @@
-#k8s deployment mafinest for WebServer
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,10 +36,6 @@ spec:
         agentpool: "${AGENT_POOL}"
       imagePullSecrets:
         - name: dasa-images
-      hostAliases:
-        - ip: "${LAUDASA_V1_IP}"
-          hostnames:
-            - "${LAUDASA_V1_HOSTNAME}"
       containers:
         - name: ${CONTAINER_NAME}
           image: ${DOCKER_IMAGE}
@@ -135,7 +130,7 @@ spec:
   type: ClusterIP
 ---
 
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: ${K8S_INGRESS}
@@ -154,9 +149,6 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Prefix
             backend:
-              service:
-                name: ${K8S_SERVICE}
-                port:
-                  number: 80
+              serviceName: ${K8S_SERVICE}
+              servicePort: 80
