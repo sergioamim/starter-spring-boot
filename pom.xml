@@ -6,7 +6,6 @@
 		<groupId>br.com.dasa</groupId>
 		<artifactId>ap-parent-pom</artifactId>
 		<version>1.0</version>
-		<relativePath/>
 	</parent>
 	<groupId>br.com.dasa</groupId>
 	<artifactId>ap-starter-model</artifactId>
