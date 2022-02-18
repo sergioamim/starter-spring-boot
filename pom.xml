@@ -3,12 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.3</version>
+		<groupId>br.com.dasa</groupId>
+		<artifactId>ap-parent-pom</artifactId>
+		<version>1.0</version>
 		<relativePath/>
 	</parent>
-
 	<groupId>br.com.dasa</groupId>
 	<artifactId>ap-starter-model</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
@@ -20,7 +19,6 @@
 		<sonar.projectName>ap-starter-model</sonar.projectName>
 		<sonar.exclusions>
 			**/*br/com/dasa/startermodel/Application**
-			**/e2e/**
 		</sonar.exclusions>
 		<jacoco.destFile>${maven.multiModuleProjectDirectory}/target/jacoco.exec</jacoco.destFile>
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
