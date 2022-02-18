@@ -94,7 +94,7 @@ k8sLoadVars(){
 k8sApply(){
   ensureVarIsNotEmpty "KUBECONFIG"
 
-  K8S_TEMPLATE_FILE="./util/pipeline/k8s/ws-deployment.tmpl.yaml"
+  K8S_TEMPLATE_FILE="./util/pipeline/k8s/app-template.yaml"
   ensureFileExists "${K8S_TEMPLATE_FILE}" "${KUBECONFIG}"
 
   # pq insecure-skip-tls-verify?
