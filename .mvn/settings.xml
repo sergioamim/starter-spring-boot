@@ -20,11 +20,11 @@
             <repositories>
                 <repository>
                     <id>nexus</id>
-                    <url>${nexusUrl}/repository/maven-public/</url>
+                    <url>https://nexus.dasaexp.io/repository/maven-public/</url>
                 </repository>
                 <repository>
                     <id>ap-common</id>
-                    <url>${nexusUrl}/repository/ap-commons</url>
+                    <url>https://nexus.dasaexp.io/repository/ap-commons</url>
                 </repository>
             </repositories>
         </profile>
@@ -43,11 +43,11 @@
             <repositories>
                 <repository>
                     <id>nexus</id>
-                    <url>${nexusUrl}/repository/maven-public/</url>
+                    <url>https://nexus.dasaexp.io/repository/maven-public/</url>
                 </repository>
                 <repository>
                     <id>ap-common</id>
-                    <url>${nexusUrl}/repository/ap-commons</url>
+                    <url>https://nexus.dasaexp.io/repository/ap-commons</url>
                 </repository>
             </repositories>
         </profile>
