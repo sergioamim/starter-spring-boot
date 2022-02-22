@@ -11,6 +11,7 @@ import br.com.dasa.startermodel.controller.dto.ExemploDTO;
 import br.com.dasa.startermodel.controller.mapper.ExemploMapper;
 import br.com.dasa.startermodel.entity.Exemplo;
 import br.com.dasa.startermodel.service.ExemploService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("v1/exemplo")
@@ -24,6 +25,7 @@ public class ExemploController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Localiza todos exemplos")
     public List<ExemploDTO> findAll() {
         List<ExemploDTO> responseList = ExemploMapper.INSTANCE.asDTOList( service.findAll());
         return responseList;
@@ -31,6 +33,7 @@ public class ExemploController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Localiza exemplo por id")
     public ExemploDTO findById(@PathVariable Long id) {
         return ExemploMapper.INSTANCE.toDTO(service.findById(id));
     }

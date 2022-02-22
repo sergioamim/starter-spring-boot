@@ -7,7 +7,7 @@ PROJECT_NAME=ap-starter-model
 MAVEN_OPTS = -Drevision=1.0.0
 COMPOSE_DOCKER_CLI_BUILD = 1
 DOCKER_BUILDKIT = 1
-COMPOSE_FILES = -f ./util/docker/docker-compose.yml -f
+COMPOSE_FILES = -f ./util/docker/docker-compose.yml
 # K8S-DEBUG
 # KUBECONFIG=$${HOME}/.dasa/kube-config-dev.yaml
 
