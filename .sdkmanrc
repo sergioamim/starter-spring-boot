@@ -1,0 +1,15 @@
+########################
+## SKDMAN config file ##
+########################
+## Quick Start ##
+##
+#   Follow these steps to install and configure sdkman for this project:
+#   - install sdkman: https://sdkman.io/install
+#   - run: sdk install java 11.0.12.7.1-amzn
+#   - define 'sdkman_auto_env=true' into file '~/.sdkman/etc/config'
+## FAQ ##
+# Official Docs: https://sdkman.io/usage
+###
+
+# current java version used by this project
+java=11.0.12.7.1-amzn

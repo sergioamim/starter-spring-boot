@@ -1,0 +1,54 @@
+app:
+  description: "Starter Model - DASA"
+  title: "Starter Model"
+  version: "1.0"
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      group:
+        readiness:
+          include: readinessState,db
+        liveness:
+          include: livenessstate,ping
+logging.level:
+  com: ${LOGGING_LEVEL_COM:ERROR}
+  br: ${LOGGING_LEVEL_BR:INFO}
+  org.springframework: ${ORG_SPRINGFRAMEWORK_LOG:ERROR}
+system:
+  time_zone: GMT-0300
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+spring:
+  rest:
+    maxPageSize: 500
+    defaultLimitValue: 100
+    defaultPageValue: 0
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  datasource:
+    url: jdbc:h2:mem:test
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+---
+spring:
+  config:
+    activate:
+      on-profile: test, auto-test
+  datasource:
+    url: jdbc:h2:mem:test
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
