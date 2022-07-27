@@ -23,6 +23,8 @@ help : Makefile
 ##
 ## > Maven (dev mode)
 ##
+mvnw:
+	mvn -N wrapper:wrapper
 
 ## [build-quick] build the apps, but skip the tests
 build-quick:

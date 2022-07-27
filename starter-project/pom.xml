@@ -19,10 +19,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.projectName>ap-starter-model</sonar.projectName>
 		<sonar.exclusions>
+			**/*br/com/dasa/startermodel/config/**,
+			**/*br/com/dasa/startermodel/controller/dto/**,
+			**/*br/com/dasa/startermodel/controller/mapper/**,
+			**/*br/com/dasa/startermodel/converter/**,
+			**/*br/com/dasa/startermodel/entity/**,
+			**/*br/com/dasa/startermodel/repository/**,
+			**/*br/com/dasa/startermodel/utils/**,
 			**/*br/com/dasa/startermodel/Application**
 		</sonar.exclusions>
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
+		<log4j2.version>2.18.0</log4j2.version>
 		<lombok.version>1.18.22</lombok.version>
 	</properties>
 	<build>
