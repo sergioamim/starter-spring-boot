@@ -1,0 +1,7 @@
+
+
+docker-image:
+	./mvnw spring-boot:build-image
+
+run-docker:
+	docker run -it -p8080:8080 demo:0.0.1-SNAPSHOT
