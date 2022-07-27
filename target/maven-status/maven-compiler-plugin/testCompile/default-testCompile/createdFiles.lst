@@ -1,0 +1,5 @@
+br/com/starter/demo/api/utils/ExemploTestBuilder.class
+br/com/starter/demo/api/service/ExemploServiceTest.class
+br/com/starter/demo/api/controller/ExemploControllerTest.class
+br/com/starter/demo/ApplicationTests.class
+br/com/starter/demo/api/utils/CustomUtils.class
