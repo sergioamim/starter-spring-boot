@@ -3,9 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>br.com.dasa</groupId>
-		<artifactId>ap-parent-pom</artifactId>
-		<version>1.0</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.2</version>
+		<relativePath/>
 	</parent>
 	<groupId>br.com.dasa</groupId>
 	<artifactId>ap-starter-model</artifactId>
@@ -14,12 +15,12 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<mapstruct.version>1.5.2.Final</mapstruct.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.projectName>ap-starter-model</sonar.projectName>
 		<sonar.exclusions>
 			**/*br/com/dasa/startermodel/Application**
 		</sonar.exclusions>
-		<jacoco.destFile>${maven.multiModuleProjectDirectory}/target/jacoco.exec</jacoco.destFile>
 		<ap-commons-api.version>1.0.4</ap-commons-api.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.22</lombok.version>
@@ -64,14 +65,20 @@
 					<artifactId>sonar-maven-plugin</artifactId>
 				</plugin>
 				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>${sonar.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco.version}</version>
 					<configuration>
-						<excludes>
-							<exclude>${sonar.exclusions}</exclude>
-						</excludes>
+						<output>file</output>
 						<append>true</append>
-						<dataFile>${jacoco.destFile}</dataFile>
+						<excludes>
+							${sonar.exclusions}
+						</excludes>
 					</configuration>
 					<executions>
 						<execution>
@@ -87,24 +94,26 @@
 											<limit>
 												<counter>INSTRUCTION</counter>
 												<value>COVEREDRATIO</value>
-												<minimum>0.7</minimum>
+												<minimum>0.8</minimum>
 											</limit>
 										</limits>
 									</rule>
+
 								</rules>
 							</configuration>
 						</execution>
 						<execution>
-							<id>prepare-agent</id>
+							<id>prepare-and-report</id>
 							<goals>
 								<goal>prepare-agent</goal>
+								<goal>report</goal>
 							</goals>
 						</execution>
 						<execution>
-							<id>report</id>
-							<phase>test</phase>
+							<id>report-aggregate</id>
+							<phase>verify</phase>
 							<goals>
-								<goal>report</goal>
+								<goal>report-aggregate</goal>
 							</goals>
 						</execution>
 					</executions>

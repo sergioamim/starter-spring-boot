@@ -19,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -45,6 +46,10 @@ public class ExemploControllerTest {
     private ExemploRepository repository;
     @MockBean
     private ExemploMapper mapper;
+
+    @Autowired
+    private ExemploMapper mapperInstance;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -57,6 +62,8 @@ public class ExemploControllerTest {
     @DisplayName("Test findAll Exemplo Success")
     public void getAll() throws Exception {
         Mockito.when(service.findAll()).thenReturn(ExemploTestBuilder.getListEntities());
+        Mockito.when(mapper.asDTOList(any())).thenReturn(ExemploMapper.INSTANCE.asDTOList(ExemploTestBuilder.getListEntities()));
+
         mockMvc.perform(MockMvcRequestBuilders.get(ENDPOINT_URL))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
@@ -71,11 +78,13 @@ public class ExemploControllerTest {
 
         Mockito.when(service.findById(anyLong())).thenReturn(ExemploTestBuilder.getEntity());
 
-        mockMvc.perform(MockMvcRequestBuilders.get(ENDPOINT_URL + "/" + ID))
+        mockMvc.perform(MockMvcRequestBuilders.get(ENDPOINT_URL + "/" + ID)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Is.is(ID.intValue())));
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Is.is(ID.intValue())));
         Mockito.verify(service, Mockito.times(1)).findById(ID);
         Mockito.verifyNoMoreInteractions(service);
     }
@@ -88,9 +97,9 @@ public class ExemploControllerTest {
         mockMvc.perform(
                         MockMvcRequestBuilders.post(ENDPOINT_URL)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(CustomUtils.asJsonString(ExemploMapper.INSTANCE.toDTO(ExemploTestBuilder.getEntity()))))
+                                .content(CustomUtils.asJsonString(ExemploTestBuilder.getDto())))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
-        Mockito.verify(service, Mockito.times(1)).create(any(Exemplo.class));
+        Mockito.verify(service, Mockito.times(1)).create(any());
         Mockito.verifyNoMoreInteractions(service);
     }
 
@@ -102,9 +111,9 @@ public class ExemploControllerTest {
         mockMvc.perform(
                         MockMvcRequestBuilders.put(ENDPOINT_URL + "/" + ID)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(CustomUtils.asJsonString(ExemploMapper.INSTANCE.toDTO(ExemploTestBuilder.getEntity()))))
+                                .content(CustomUtils.asJsonString(ExemploTestBuilder.getDto())))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-        Mockito.verify(service, Mockito.times(1)).update(any(Exemplo.class));
+        Mockito.verify(service, Mockito.times(1)).update(any());
         Mockito.verifyNoMoreInteractions(service);
     }
 

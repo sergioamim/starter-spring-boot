@@ -36,7 +36,8 @@ public class ExemploService {
     }
 
     public void delete(Long id) {
-        Exemplo obj = repository.findById(id).orElseThrow(() -> new NotFoundBusinessException("Exemplo nao encontrado."));
-        repository.delete(obj);
+        Exemplo exemplo = repository.findById(id)
+                .orElseThrow(() -> new NotFoundBusinessException("Exemplo nao encontrado."));
+        repository.delete(exemplo);
     }
 }

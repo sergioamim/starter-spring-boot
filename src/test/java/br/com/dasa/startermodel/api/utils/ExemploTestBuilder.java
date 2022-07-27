@@ -3,6 +3,7 @@ package br.com.dasa.startermodel.api.utils;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.dasa.startermodel.controller.dto.ExemploDTO;
 import br.com.dasa.startermodel.entity.Exemplo;
 
 public class ExemploTestBuilder {
@@ -17,5 +18,14 @@ public class ExemploTestBuilder {
         obj.setName("name");
         obj.setDescription("description");
         return obj;
+    }
+
+
+    public static ExemploDTO getDto() {
+        return ExemploDTO.builder()
+                .id(1L)
+                .name("name")
+                .description("description")
+                .build();
     }
 }
