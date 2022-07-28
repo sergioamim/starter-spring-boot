@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.com.starter.demo.api.controller.ExemploControllerTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.617 s - in br.com.starter.demo.api.controller.ExemploControllerTest
