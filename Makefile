@@ -1,5 +1,8 @@
 
 
+mvn-wrapper:
+	mvn -N wrapper:wrapper
+
 docker-image:
 	./mvnw spring-boot:build-image
 

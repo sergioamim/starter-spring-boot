@@ -1,0 +1,12 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: starter-spring-boot
+build:
+  artifacts:
+  - image: demo-starter-spring-boot
+    jib: {}
+manifests:
+  rawYaml:
+  - k8s/deployment.yaml
+  - k8s/service.yaml

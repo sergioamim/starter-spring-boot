@@ -10,19 +10,11 @@ import br.com.starter.demo.service.ExemploService;
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
-
-@RequiredArgsConstructor
 public class Application {
-
-	private final ExemploService exemploService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@PostConstruct
-	public void createExemplo() {
-		exemploService.create(Exemplo.builder().name("TEST").description("Description").build());
-	}
 
 }
