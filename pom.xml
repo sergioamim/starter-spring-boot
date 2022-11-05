@@ -23,6 +23,7 @@
 		<lombok.version>1.18.24</lombok.version>
 		<openapi.version>1.6.12</openapi.version>
 		<flyway.version>9.3.1</flyway.version>
+		<maven.build.timestamp.format>yyyyMMdd-HHmmssSSS</maven.build.timestamp.format>
 	</properties>
 
 	<pluginRepositories>
@@ -68,7 +69,7 @@
 						<image>azul/zulu-openjdk-alpine:11</image>
 					</from>
 					<to>
-						<image>hub.docker.com/r/sergioamim/demo-starter-spring-boot</image>
+						<image>sergioamim/demo-starter-spring-boot:${project.version}</image>
 					</to>
 				</configuration>
 			</plugin>

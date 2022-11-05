@@ -4,7 +4,7 @@ metadata:
   name: starter-spring-boot
 build:
   artifacts:
-  - image: demo-starter-spring-boot
+  - image: sergioamim/demo-starter-spring-boot
     jib: {}
 manifests:
   rawYaml:

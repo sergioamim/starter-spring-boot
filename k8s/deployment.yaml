@@ -16,4 +16,7 @@ spec:
     spec:
       containers:
         - name: demo
-          image: demo-starter-spring-boot:latest
+          image: sergioamim/demo-starter-spring-boot
+          imagePullPolicy: IfNotPresent
+          ports:
+              - containerPort: 8080
