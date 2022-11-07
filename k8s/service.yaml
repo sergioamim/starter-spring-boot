@@ -6,10 +6,10 @@ metadata:
   name: demo
 spec:
   ports:
-    - port: 8080
+    - name: http
+      port: 8080
       protocol: TCP
       targetPort: 8080
-      nodePort: 30001
-  type: NodePort # type of the service.
+  type: ClusterIP
   selector:
     app: demo

@@ -4,6 +4,8 @@ package br.com.starter.demo.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import br.com.starter.demo.entity.Exemplo;
 import br.com.starter.demo.service.ExemploService;
 import io.swagger.v3.oas.annotations.Operation;
 
+@Slf4j
 @RestController
 @RequestMapping("v1/exemplo")
 public class ExemploController {
@@ -28,6 +31,7 @@ public class ExemploController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Localiza todos exemplos")
     public List<ExemploDTO> findAll() {
+        log.info("executing findAll");
         return service.findAll()
                 .stream()
                 .map(mapper::toDTO)

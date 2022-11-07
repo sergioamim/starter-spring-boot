@@ -17,12 +17,17 @@ Spring Boot Starter Project
 4. kubectl apply -f k8s/service.yml
 
 
+## Habiliar Ingerss no minikube
+```bash
+minikube addons enable ingress
+```
+
+
 ## Skaffold commands
 
 - skaffold init
-- skaffold dev
+- skaffold dev (fica monitorando alteracoes e aplica automaticamente)
 - skaffold debug
-
 
 
 ## Running with docker
@@ -36,3 +41,11 @@ Spring Boot Starter Project
 ## Swagger
 
 http://localhost:8080/swagger-ui/index.html#/
+
+
+
+## Listar IP e porta exposta pelo Ingress
+
+```bash
+kubectl get ingress    
+```
