@@ -6,21 +6,22 @@ Spring Boot Starter Project
  * Mapstruct
  * Lombok
  * springdoc-openapi
+ * Jib
+ * Kubernetes
+ * Skaffold
 
+## Requisitops
 
-
-## Steps to deploy:
-
-1. mvn package
-2. docker build -t springboot-k8s-example .
-3. kubectl apply -f k8s/deployment.yml
-4. kubectl apply -f k8s/service.yml
+1. minikube
+2. ingress habilitado
+3. skaffold instalado
 
 
 ## Habiliar Ingerss no minikube
 ```bash
 minikube addons enable ingress
 ```
+
 
 
 ## Skaffold commands
@@ -38,14 +39,16 @@ minikube addons enable ingress
 ```
 
 
-## Swagger
 
-http://localhost:8080/swagger-ui/index.html#/
-
-
-
-## Listar IP e porta exposta pelo Ingress
+## Listar IP e porta exposta pelo Ingress para poder acessar o servico
 
 ```bash
 kubectl get ingress    
 ```
+
+
+## Swagger
+
+{IP_K8S}/swagger-ui/index.html#
+
+
